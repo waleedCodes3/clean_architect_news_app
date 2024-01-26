@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:clean_architect_news_app/core/network/connectivity_service.dart';
 import 'package:clean_architect_news_app/dependency_injection.dart';
 import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/remote/bloc/remote_article_bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,22 +17,40 @@ class DailyNews extends StatefulWidget {
 }
 
 class _DailyNewsState extends State<DailyNews> {
+  final _connectivityService = sl<ConnectivityService>();
+  late StreamSubscription<ConnectivityResult> streamSubScription;
+
   @override
   void initState() {
+    streamSubScription = _connectivityService.startConnectvityCheckerStream();
     sl<RemoteArticleBloc>().add(GetArticlesEvent());
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appbar(),
-      body: _body(),
+    return RefreshIndicator(
+      onRefresh: () async {
+        sl<RemoteArticleBloc>().add(GetArticlesEvent());
+      },
+      child: Scaffold(
+        appBar: _appbar(),
+        body: _body(),
+      ),
     );
   }
 
   AppBar _appbar() {
     return AppBar(
+      actions: [
+        IconButton(
+          onPressed: () {
+            streamSubScription.cancel();
+          },
+          icon: const Icon(Icons.clear),
+        )
+      ],
       title: const Text("Daily News"),
       centerTitle: true,
     );
@@ -40,7 +62,21 @@ class _DailyNewsState extends State<DailyNews> {
         if (state is RemoteArticleLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is RemoteArticleError) {
-          return Text(state.error.toString());
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  state.error!.message!.toString(),
+                ),
+                IconButton(
+                    onPressed: () {
+                      sl<RemoteArticleBloc>().add(GetArticlesEvent());
+                    },
+                    icon: const Icon(Icons.refresh))
+              ],
+            ),
+          );
         } else if (state is RemoteArticleDone) {
           return state.articles != null
               ? ListView.builder(

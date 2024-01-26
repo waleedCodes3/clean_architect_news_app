@@ -1,4 +1,6 @@
+import 'package:clean_architect_news_app/features/daily_news/data/data_sources/local/convertors/articles_list_response_converters.dart';
 import 'package:equatable/equatable.dart';
+import 'package:floor/floor.dart';
 
 import '../../data/models/article_model.dart';
 
@@ -38,11 +40,11 @@ class ArticleEntity extends Equatable {
 }
 
 class ArticlesListResponseEntity {
- final String? status;
- final int? totalResults;
- final List<Articles>? articles;
+  final String? status;
+  final int? totalResults;
+
+  @TypeConverters([ArticlesListConverter])
+  final List<Articles>? articles;
 
   ArticlesListResponseEntity({this.status, this.totalResults, this.articles});
-
-  
 }
