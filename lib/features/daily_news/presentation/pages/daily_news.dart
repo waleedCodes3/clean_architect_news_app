@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:clean_architect_news_app/core/network/connectivity_service.dart';
 import 'package:clean_architect_news_app/dependency_injection.dart';
+import 'package:clean_architect_news_app/features/daily_news/data/models/article_model.dart';
 import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/remote/bloc/remote_article_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,9 @@ class _DailyNewsState extends State<DailyNews> {
       actions: [
         IconButton(
           onPressed: () {
-            streamSubScription.cancel();
+            Navigator.pushNamed(context, '/SavedArticles');
           },
-          icon: const Icon(Icons.clear),
+          icon: const Icon(Icons.bookmark),
         )
       ],
       title: const Text("Daily News"),
@@ -82,8 +83,13 @@ class _DailyNewsState extends State<DailyNews> {
               ? ListView.builder(
                   itemCount: state.articles!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ArticleWidget(
-                      article: state.articles![index],
+                    return InkWell(
+                      onTap: () {
+                        _onArticlePressed(context, state.articles![index]);
+                      },
+                      child: ArticleWidget(
+                        article: state.articles![index],
+                      ),
                     );
                   },
                 )
@@ -95,5 +101,9 @@ class _DailyNewsState extends State<DailyNews> {
         }
       },
     );
+  }
+
+  void _onArticlePressed(BuildContext context, Articles article) {
+    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
   }
 }

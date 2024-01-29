@@ -1,4 +1,6 @@
+import 'package:clean_architect_news_app/config/routes/routes.dart';
 import 'package:clean_architect_news_app/dependency_injection.dart';
+import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/local/bloc/local_article_bloc.dart';
 import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/remote/bloc/remote_article_bloc.dart';
 import 'package:clean_architect_news_app/features/daily_news/presentation/pages/daily_news.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<RemoteArticleBloc>(
           create: (context) => sl(),
         ),
+        BlocProvider<LocalArticleBloc>(
+          create: (context) => sl(),
+        ),
         // Add other BlocProviders here
         // Example:
         // BlocProvider<AnotherBloc>(
@@ -30,9 +35,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
         ),
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
         home: const DailyNews(),
       ),
     );

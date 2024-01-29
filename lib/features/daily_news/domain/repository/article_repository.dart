@@ -7,4 +7,6 @@ abstract class ArticleRepository {
 
   //databaseMethods
   Future<ArticlesListResponse?> getArticlesListResponse();
+  Future<bool> saveArticle(Articles article);
+  Future<List<Articles>> getSavedArticles();
 }

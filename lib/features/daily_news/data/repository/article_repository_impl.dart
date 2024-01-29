@@ -53,4 +53,19 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<ArticlesListResponse?> getArticlesListResponse() {
     return _appdatabase.articleListDao.getArticles();
   }
+
+  @override
+  Future<bool> saveArticle(Articles article) async {
+    try {
+      _appdatabase.savedArticlesDao.saveArticle(article);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<List<Articles>> getSavedArticles() {
+    return _appdatabase.savedArticlesDao.getSavedArticles();
+  }
 }

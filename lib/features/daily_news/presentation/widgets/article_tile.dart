@@ -7,12 +7,12 @@ class ArticleWidget extends StatelessWidget {
   final Articles? article;
   final bool? isRemovable;
   final void Function(Articles article)? onRemove;
-  final void Function(Articles article)? onArticlePressed;
+  // final void Function(Articles article)? onArticlePressed;
 
   const ArticleWidget({
     Key? key,
     this.article,
-    this.onArticlePressed,
+    // this.onArticlePressed,
     this.isRemovable = false,
     this.onRemove,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class ArticleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: _onTap,
+      // onTap: _onTap,
       child: Container(
         padding: const EdgeInsetsDirectional.only(
             start: 14, end: 14, bottom: 7, top: 7),
@@ -122,7 +122,7 @@ class ArticleWidget extends StatelessWidget {
                 const Icon(Icons.timeline_outlined, size: 16),
                 const SizedBox(width: 4),
                 Text(
-                  article!.publishedAt!,
+                  article!.publishedAt ?? "",
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -148,11 +148,11 @@ class ArticleWidget extends StatelessWidget {
     return Container();
   }
 
-  void _onTap() {
-    if (onArticlePressed != null) {
-      onArticlePressed!(article!);
-    }
-  }
+  // void _onTap() {
+  //   // if (onArticlePressed != null) {
+  //     // onArticlePressed!(article!);
+  //   }
+  // }
 
   void _onRemove() {
     if (onRemove != null) {
