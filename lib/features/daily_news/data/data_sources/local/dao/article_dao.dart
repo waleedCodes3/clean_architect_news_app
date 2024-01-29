@@ -3,9 +3,9 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class ArticleListDao {
-  @Insert()
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertArticleDao(ArticlesListResponse articlesListResponse);
 
-  @Query("Select * FROM articles_table")
-  Future<ArticlesListResponse> getArticles();
+  @Query("Select * FROM articles_list_response_table")
+  Future<ArticlesListResponse?> getArticles();
 }

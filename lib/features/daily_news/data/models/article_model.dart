@@ -1,18 +1,16 @@
-import 'package:clean_architect_news_app/features/daily_news/data/data_sources/local/convertors/articles_list_response_converters.dart';
 import 'package:clean_architect_news_app/features/daily_news/domain/entities/article.dart';
 import 'package:floor/floor.dart';
 
-@Entity(tableName: 'articles_response', primaryKeys: [''])
+@Entity(tableName: 'articles_list_response_table')
 class ArticlesListResponse extends ArticlesListResponseEntity {
   @override
-  @PrimaryKey()
   String? status;
 
   @override
+  @primaryKey
   int? totalResults;
 
   @override
-  @TypeConverters([ArticlesListConverter])
   List<Articles>? articles;
 
   ArticlesListResponse({this.status, this.totalResults, this.articles});
