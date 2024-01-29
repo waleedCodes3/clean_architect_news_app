@@ -4,12 +4,10 @@ import 'package:floor/floor.dart';
 @Entity(tableName: 'articles_list_response_table')
 class ArticlesListResponse extends ArticlesListResponseEntity {
   @override
-  String? status;
-
-  @override
   @primaryKey
+  String? status;
+  @override
   int? totalResults;
-
   @override
   List<Articles>? articles;
 

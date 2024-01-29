@@ -4,16 +4,17 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConnectivityService {
   final Connectivity _connectivity = Connectivity();
-  bool isConnected = false;
+  late bool isConnected;
   // Constructor
   ConnectivityService() {
     // Initial check for connectivity
     _checkInitialConnectivity();
   }
 
-  void _checkInitialConnectivity() async {
-    var connectivityResult = await _connectivity.checkConnectivity();
-    _updateConnectionStatus(connectivityResult);
+  void _checkInitialConnectivity() {
+    _connectivity
+        .checkConnectivity()
+        .then((value) => _updateConnectionStatus(value));
   }
 
   void _updateConnectionStatus(ConnectivityResult result) {

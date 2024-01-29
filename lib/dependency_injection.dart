@@ -30,6 +30,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<RemoteArticleBloc>(RemoteArticleBloc(sl()));
 
   //connectivity
-  sl.registerLazySingleton<ConnectivityService>(() => ConnectivityService());
+  sl.registerSingleton<ConnectivityService>(ConnectivityService());
   sl.registerSingleton<Connectivity>(Connectivity());
 }

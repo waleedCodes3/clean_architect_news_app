@@ -69,7 +69,7 @@ class _$Appdatabase extends Appdatabase {
     Callback? callback,
   ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
-      version: 2,
+      version: 1,
       onConfigure: (database) async {
         await database.execute('PRAGMA foreign_keys = ON');
         await callback?.onConfigure?.call(database);
@@ -85,7 +85,7 @@ class _$Appdatabase extends Appdatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `articles_list_response_table` (`status` TEXT, `totalResults` INTEGER, `articles` TEXT,PRIMARY KEY (`totalResults`))');
+            'CREATE TABLE IF NOT EXISTS `articles_list_response_table` (`status` TEXT, `totalResults` INTEGER, `articles` TEXT, PRIMARY KEY (`status`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -110,8 +110,8 @@ class _$ArticleListDao extends ArticleListDao {
             'articles_list_response_table',
             (ArticlesListResponse item) => <String, Object?>{
                   'status': item.status,
-                  'articles': _articlesListConverter.encode(item.articles),
                   'totalResults': item.totalResults,
+                  'articles': _articlesListConverter.encode(item.articles),
                 });
 
   final sqflite.DatabaseExecutor database;
