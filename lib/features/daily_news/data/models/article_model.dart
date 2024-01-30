@@ -37,7 +37,7 @@ class ArticlesListResponse extends ArticlesListResponseEntity {
 
 @Entity(tableName: "articles_table")
 class Articles {
-  @PrimaryKey(autoGenerate: true)
+  @PrimaryKey(autoGenerate: true,)
   int? id;
   Source? source;
   String? author;

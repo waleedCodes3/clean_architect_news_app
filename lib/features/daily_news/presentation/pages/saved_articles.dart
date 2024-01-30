@@ -74,11 +74,14 @@ class _SavedArticlesState extends State<SavedArticles> {
         return GestureDetector(
           onTap: () async => _onArticlePressed(context, articles[index]),
           child: ArticleWidget(
-            article: articles[index],
-            isRemovable: true,
-            // onRemove: (article) => _onRemoveArticle(context, article),
-            // onArticlePressed: (article) => _onArticlePressed(context, article),
-          ),
+              article: articles[index],
+              isRemovable: true,
+              // onRemove: (article) {
+              //   print(id.toString());
+                
+              // }
+              // onArticlePressed: (article) => _onArticlePressed(context, article),
+              ),
         );
       },
     );

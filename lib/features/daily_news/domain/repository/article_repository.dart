@@ -9,4 +9,6 @@ abstract class ArticleRepository {
   Future<ArticlesListResponse?> getArticlesListResponse();
   Future<bool> saveArticle(Articles article);
   Future<List<Articles>> getSavedArticles();
+  Future<bool> deleteArticle(String title);
+  
 }

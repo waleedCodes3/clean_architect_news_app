@@ -8,4 +8,7 @@ abstract class SavedArticlesDao {
 
   @Query("Select * FROM articles_table")
   Future<List<Articles>> getSavedArticles();
+
+  @Query("DELETE FROM articles_table WHERE title = :title")
+  Future<void> deleteArticle(String title);
 }

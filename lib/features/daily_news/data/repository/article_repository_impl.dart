@@ -68,4 +68,14 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<List<Articles>> getSavedArticles() {
     return _appdatabase.savedArticlesDao.getSavedArticles();
   }
+
+  @override
+  Future<bool> deleteArticle(String id) async {
+    try {
+      await _appdatabase.savedArticlesDao.deleteArticle(id);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

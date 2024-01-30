@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clean_architect_news_app/dependency_injection.dart';
 import 'package:clean_architect_news_app/features/daily_news/data/models/article_model.dart';
+import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/local/bloc/local_article_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -138,7 +140,11 @@ class ArticleWidget extends StatelessWidget {
   Widget _buildRemovableArea() {
     if (isRemovable!) {
       return GestureDetector(
-        onTap: _onRemove,
+        onTap: () {
+          print("--------------------------------------");
+          print(article!.id.toString());
+          sl<LocalArticleBloc>().add(DeleteArticleEvent(article!.title!));
+        },
         child: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 8),
           child: Icon(Icons.remove_circle_outline, color: Colors.red),

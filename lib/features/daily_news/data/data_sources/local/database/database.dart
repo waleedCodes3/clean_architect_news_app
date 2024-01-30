@@ -8,7 +8,7 @@ import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 part 'database.g.dart';
 
-@Database(version: 2, entities: [ArticlesListResponse,Articles])
+@Database(version: 4, entities: [ArticlesListResponse,Articles])
 @TypeConverters(
   [
     ArticlesListConverter,

@@ -8,11 +8,17 @@ sealed class LocalArticleEvent extends Equatable {
 }
 
 final class GetLocallaySavedArticlesEvent extends LocalArticleEvent {}
-final class ResetLocalArticleBlocEvent extends LocalArticleEvent{}
+
+final class ResetLocalArticleBlocEvent extends LocalArticleEvent {}
 
 final class SaveArticleLocallyEvent extends LocalArticleEvent {
   final Articles article;
 
   const SaveArticleLocallyEvent(this.article);
 }
-final class GetSavedArticlesEvent extends LocalArticleState{}
+
+final class DeleteArticleEvent extends LocalArticleEvent {
+  final String title;
+
+  const DeleteArticleEvent(this.title);
+}

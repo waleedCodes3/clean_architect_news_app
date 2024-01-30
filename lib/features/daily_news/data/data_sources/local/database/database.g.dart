@@ -71,7 +71,7 @@ class _$Appdatabase extends Appdatabase {
     Callback? callback,
   ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
-      version: 2,
+      version: 4,
       onConfigure: (database) async {
         await database.execute('PRAGMA foreign_keys = ON');
         await callback?.onConfigure?.call(database);
@@ -191,6 +191,13 @@ class _$SavedArticlesDao extends SavedArticlesDao {
             urlToImage: row['urlToImage'] as String?,
             publishedAt: row['publishedAt'] as String?,
             content: row['content'] as String?));
+  }
+
+  @override
+  Future<void> deleteArticle(String title) async {
+    await _queryAdapter.queryNoReturn(
+        'DELETE FROM articles_table WHERE title = ?1',
+        arguments: [title]);
   }
 
   @override
