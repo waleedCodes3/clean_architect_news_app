@@ -43,8 +43,6 @@ class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
   _getSavedArticlesEvent(GetLocallaySavedArticlesEvent event,
       Emitter<LocalArticleState> emit) async {
     emit(LocalArticlesFetchingState());
-    await Future.delayed(const Duration(seconds: 5));
-
     final articlesList = await getSavedArticleUseCase.call();
     if (articlesList.isNotEmpty) {
       emit(LocalArticlesFetchedState(articlesList));

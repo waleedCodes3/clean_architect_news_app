@@ -1,3 +1,4 @@
+import 'package:clean_architect_news_app/config/routes/routes.dart';
 import 'package:clean_architect_news_app/dependency_injection.dart';
 import 'package:clean_architect_news_app/features/daily_news/data/models/article_model.dart';
 import 'package:clean_architect_news_app/features/daily_news/presentation/bloc/article/local/bloc/local_article_bloc.dart';
@@ -89,7 +90,8 @@ class _SavedArticlesState extends State<SavedArticles> {
 
   // void _onRemoveArticle(BuildContext context, ArticleEntity article) {
   void _onArticlePressed(BuildContext context, Articles article) async {
-    await Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    await Navigator.pushNamed(context, '/ArticleDetails',
+        arguments: ArticleDetailsArguments(article: article, x: 34));
     onpageRevisited();
   }
 

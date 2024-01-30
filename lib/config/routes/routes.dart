@@ -30,7 +30,7 @@ class AppRoutes {
 
 class ArticleDetailsArguments {
   final Articles? article;
-  final int? x; // Another argument
+  final int?   x; // Another argument
 
   ArticleDetailsArguments({required this.article, required this.x});
 }
