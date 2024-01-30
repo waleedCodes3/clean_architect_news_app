@@ -14,6 +14,11 @@ import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
 Future<void> initializeDependencies() async {
+
+   //connectivity
+  sl.registerSingleton<ConnectivityService>(ConnectivityService());
+  sl.registerSingleton<Connectivity>(Connectivity());
+  
   //database
   final database =
       await $FloorAppdatabase.databaseBuilder('app_database.db').build();
@@ -35,7 +40,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<RemoteArticleBloc>(RemoteArticleBloc(sl()));
   sl.registerSingleton<LocalArticleBloc>(LocalArticleBloc(sl(), sl()));
 
-  //connectivity
-  sl.registerSingleton<ConnectivityService>(ConnectivityService());
-  sl.registerSingleton<Connectivity>(Connectivity());
+
 }

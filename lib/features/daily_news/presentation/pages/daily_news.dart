@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clean_architect_news_app/config/routes/routes.dart';
 import 'package:clean_architect_news_app/core/network/connectivity_service.dart';
 import 'package:clean_architect_news_app/dependency_injection.dart';
 import 'package:clean_architect_news_app/features/daily_news/data/models/article_model.dart';
@@ -104,6 +105,7 @@ class _DailyNewsState extends State<DailyNews> {
   }
 
   void _onArticlePressed(BuildContext context, Articles article) {
-    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    Navigator.pushNamed(context, '/ArticleDetails',
+        arguments: ArticleDetailsArguments(article: article, x: 45));
   }
 }

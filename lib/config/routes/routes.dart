@@ -11,8 +11,9 @@ class AppRoutes {
         return _materialRoute(const DailyNews());
 
       case '/ArticleDetails':
+        final ArticleDetailsArguments args = settings.arguments as ArticleDetailsArguments;
         return _materialRoute(
-            ArticleDetailsView(article: settings.arguments as Articles));
+            ArticleDetailsView(article: args.article,x:args.x ,));
 
       case '/SavedArticles':
         return _materialRoute(const SavedArticles());
@@ -25,4 +26,11 @@ class AppRoutes {
   static Route<dynamic> _materialRoute(Widget view) {
     return MaterialPageRoute(builder: (_) => view);
   }
+}
+
+class ArticleDetailsArguments {
+  final Articles? article;
+  final int? x; // Another argument
+
+  ArticleDetailsArguments({required this.article, required this.x});
 }

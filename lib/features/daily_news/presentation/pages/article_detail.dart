@@ -9,8 +9,9 @@ import 'package:ionicons/ionicons.dart';
 
 class ArticleDetailsView extends StatefulWidget {
   final Articles? article;
+  final int? x;
 
-  const ArticleDetailsView({Key? key, this.article}) : super(key: key);
+  const ArticleDetailsView({Key? key, this.article, this.x}) : super(key: key);
 
   @override
   State<ArticleDetailsView> createState() => _ArticleDetailsViewState();
@@ -19,7 +20,9 @@ class ArticleDetailsView extends StatefulWidget {
 class _ArticleDetailsViewState extends State<ArticleDetailsView> {
   @override
   void initState() {
-    sl<LocalArticleBloc>().add(ResetLocalArticleBlocEvent());
+    // sl<LocalArticleBloc>().add(ResetLocalArticleBlocEvent());
+    super.initState();
+    debugPrint(widget.x.toString());
   }
 
   @override
@@ -147,7 +150,7 @@ class _ArticleDetailsViewState extends State<ArticleDetailsView> {
     return BlocBuilder<LocalArticleBloc, LocalArticleState>(
         buildWhen: (previousState, currentState) {
       // Only rebuild if the current state is loaded or error
-      return currentState != LocalArticleSavingState;
+      return sl<LocalArticleBloc>().state is! LocalArticleInitial;
     }, builder: (context, state) {
       if (state is LocalArticleInitial) {
         return FloatingActionButton(
@@ -181,14 +184,14 @@ class _ArticleDetailsViewState extends State<ArticleDetailsView> {
     Navigator.pop(context);
   }
 
-  void _onFloatingActionButtonPressed(BuildContext context) {
-    // BlocProvider.of<LocalArticleBloc>(context).add(SaveArticle(article!));
+  // void _onFloatingActionButtonPressed(BuildContext context) {
+  //   // BlocProvider.of<LocalArticleBloc>(context).add(SaveArticle(article!));
 
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(
-    //     backgroundColor: Colors.black,
-    //     content: Text('Article saved successfully.'),
-    //   ),
-    // );
-  }
+  //   // ScaffoldMessenger.of(context).showSnackBar(
+  //   //   const SnackBar(
+  //   //     backgroundColor: Colors.black,
+  //   //     content: Text('Article saved successfully.'),
+  //   //   ),
+  //   // );
+  // }
 }

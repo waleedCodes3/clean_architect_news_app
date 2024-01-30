@@ -16,16 +16,6 @@ class SavedArticles extends StatefulWidget {
 
 class _SavedArticlesState extends State<SavedArticles> {
   @override
-  Widget build(BuildContext context) {
-    sl<LocalArticleBloc>().add(GetLocallaySavedArticlesEvent());
-    print("rebuild---------->");
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(),
-    );
-  }
-
-  @override
   void initState() {
     // TODO: implement initState
     sl<LocalArticleBloc>().add(GetLocallaySavedArticlesEvent());
@@ -33,10 +23,12 @@ class _SavedArticlesState extends State<SavedArticles> {
   }
 
   @override
-  void didUpdateWidget(covariant SavedArticles oldWidget) {
-    sl<LocalArticleBloc>().add(GetLocallaySavedArticlesEvent());
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
+  Widget build(BuildContext context) {
+    debugPrint("rebild.....................");
+    return Scaffold(
+      appBar: _buildAppBar(),
+      body: _buildBody(),
+    );
   }
 
   PreferredSizeWidget _buildAppBar() {
@@ -79,7 +71,7 @@ class _SavedArticlesState extends State<SavedArticles> {
       itemCount: articles.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => _onArticlePressed(context, articles[index]),
+          onTap: () async => _onArticlePressed(context, articles[index]),
           child: ArticleWidget(
             article: articles[index],
             isRemovable: true,
@@ -96,7 +88,14 @@ class _SavedArticlesState extends State<SavedArticles> {
   }
 
   // void _onRemoveArticle(BuildContext context, ArticleEntity article) {
-  void _onArticlePressed(BuildContext context, Articles article) {
-    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+  void _onArticlePressed(BuildContext context, Articles article) async {
+    await Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    onpageRevisited();
+  }
+
+  void onpageRevisited() {
+    if (sl<LocalArticleBloc>().state is! LocalArticlesFetchedState) {
+      sl<LocalArticleBloc>().add(GetLocallaySavedArticlesEvent());
+    }
   }
 }

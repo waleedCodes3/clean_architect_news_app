@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 
 class ConnectivityService {
   final Connectivity _connectivity = Connectivity();
@@ -11,20 +12,20 @@ class ConnectivityService {
     _checkInitialConnectivity();
   }
 
-  void _checkInitialConnectivity() {
-    _connectivity
+  void _checkInitialConnectivity() async {
+    await _connectivity
         .checkConnectivity()
         .then((value) => _updateConnectionStatus(value));
   }
 
   void _updateConnectionStatus(ConnectivityResult result) {
     isConnected = result != ConnectivityResult.none;
-    print("Initial Connectivity: $isConnected");
+    debugPrint("Initial Connectivity: $isConnected");
   }
 
   StreamSubscription<ConnectivityResult> startConnectvityCheckerStream() {
     return _connectivity.onConnectivityChanged.listen((event) {
-      print(event.toString());
+      debugPrint(event.toString());
       isConnected = event != ConnectivityResult.none;
     });
   }
