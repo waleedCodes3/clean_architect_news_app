@@ -34,7 +34,7 @@ class _NewsApiService implements NewsApiService {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     if (!kReleaseMode) {
       _dio = Dio()
         ..interceptors.add(alice.getDioInterceptor())

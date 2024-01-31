@@ -121,7 +121,7 @@ class _$ArticleListDao extends ArticleListDao {
             (ArticlesListResponse item) => <String, Object?>{
                   'status': item.status,
                   'totalResults': item.totalResults,
-                  'articles': _articlesListConverter.encode(item.articles),
+                  'articles': _articlesListConverter.encode(item.articles)
                 });
 
   final sqflite.DatabaseExecutor database;

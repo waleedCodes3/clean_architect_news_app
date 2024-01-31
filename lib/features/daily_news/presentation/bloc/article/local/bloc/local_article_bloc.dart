@@ -36,7 +36,7 @@ class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
       SaveArticleLocallyEvent event, Emitter<LocalArticleState> emit) async {
     // emit(const ());
     emit(LocalArticleSavingState());
-    print(event.article.id);
+    // print(event.article.id);
     await Future.delayed(const Duration(seconds: 5));
 
     final articleSaved = await saveArticleUseCase.call(params: event.article);

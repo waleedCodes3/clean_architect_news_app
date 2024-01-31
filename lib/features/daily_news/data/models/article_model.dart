@@ -1,17 +1,9 @@
 import 'package:clean_architect_news_app/features/daily_news/domain/entities/article.dart';
 import 'package:floor/floor.dart';
 
-@Entity(tableName: 'articles_list_response_table')
+@Entity(tableName: 'articles_list_response_table', primaryKeys: ["status"])
 class ArticlesListResponse extends ArticlesListResponseEntity {
-  @override
-  @primaryKey
-  String? status;
-  @override
-  int? totalResults;
-  @override
-  List<Articles>? articles;
-
-  ArticlesListResponse({this.status, this.totalResults, this.articles});
+  ArticlesListResponse({super.status, super.totalResults, super.articles});
 
   ArticlesListResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -37,7 +29,9 @@ class ArticlesListResponse extends ArticlesListResponseEntity {
 
 @Entity(tableName: "articles_table")
 class Articles {
-  @PrimaryKey(autoGenerate: true,)
+  @PrimaryKey(
+    autoGenerate: true,
+  )
   int? id;
   Source? source;
   String? author;

@@ -141,8 +141,8 @@ class ArticleWidget extends StatelessWidget {
     if (isRemovable!) {
       return GestureDetector(
         onTap: () {
-          print("--------------------------------------");
-          print(article!.id.toString());
+          // print("--------------------------------------");
+          // print(article!.id.toString());
           sl<LocalArticleBloc>().add(DeleteArticleEvent(article!.title!));
         },
         child: const Padding(
@@ -160,9 +160,9 @@ class ArticleWidget extends StatelessWidget {
   //   }
   // }
 
-  void _onRemove() {
-    if (onRemove != null) {
-      onRemove!(article!);
-    }
-  }
+  // void _onRemove() {
+  //   if (onRemove != null) {
+  //     onRemove!(article!);
+  //   }
+  // }
 }

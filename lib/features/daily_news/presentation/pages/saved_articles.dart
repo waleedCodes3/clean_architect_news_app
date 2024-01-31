@@ -18,7 +18,6 @@ class SavedArticles extends StatefulWidget {
 class _SavedArticlesState extends State<SavedArticles> {
   @override
   void initState() {
-    // TODO: implement initState
     sl<LocalArticleBloc>().add(GetLocallaySavedArticlesEvent());
     super.initState();
   }
