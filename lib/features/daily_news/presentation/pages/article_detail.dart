@@ -20,7 +20,7 @@ class ArticleDetailsView extends StatefulWidget {
 class _ArticleDetailsViewState extends State<ArticleDetailsView> {
   @override
   void initState() {
-    // sl<LocalArticleBloc>().add(ResetLocalArticleBlocEvent());
+    sl<LocalArticleBloc>().add(ResetLocalArticleBlocEvent());
     super.initState();
     debugPrint(widget.x.toString());
   }

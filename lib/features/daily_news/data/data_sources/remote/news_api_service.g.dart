@@ -16,7 +16,7 @@ class _NewsApiService implements NewsApiService {
     baseUrl ??= 'https://newsapi.org/v2/';
   }
 
-  final Dio _dio;
+  Dio _dio;
 
   String? baseUrl;
 
@@ -35,6 +35,18 @@ class _NewsApiService implements NewsApiService {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
+    if (!kReleaseMode) {
+      _dio = Dio()
+        ..interceptors.add(alice.getDioInterceptor())
+        ..interceptors.add(PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          request: true,
+          compact: true,
+        ));
+    }
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ArticlesListResponse>>(Options(
       method: 'GET',
