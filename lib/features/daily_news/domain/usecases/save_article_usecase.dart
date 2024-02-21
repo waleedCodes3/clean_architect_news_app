@@ -11,5 +11,4 @@ class SaveArticleUseCase implements UseCase<void, Articles> {
   Future<bool> call({Articles? params}) {
     return articleRepository.saveArticle(params!);
   }
-  
 }

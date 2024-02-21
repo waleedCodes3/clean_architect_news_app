@@ -10,5 +10,4 @@ abstract class ArticleRepository {
   Future<bool> saveArticle(Articles article);
   Future<List<Articles>> getSavedArticles();
   Future<bool> deleteArticle(String title);
-  
 }

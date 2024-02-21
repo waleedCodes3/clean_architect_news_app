@@ -13,13 +13,14 @@ void main() async {
   await initializeDependencies();
   runApp(const MyApp());
 }
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Alice alice = Alice(
     showNotification: true,
     showInspectorOnShake: !kReleaseMode,
     maxCallsCount: 1000,
     navigatorKey: Alice().getNavigatorKey());
-    
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

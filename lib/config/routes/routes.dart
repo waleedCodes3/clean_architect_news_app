@@ -11,9 +11,12 @@ class AppRoutes {
         return _materialRoute(const DailyNews());
 
       case '/ArticleDetails':
-        final ArticleDetailsArguments args = settings.arguments as ArticleDetailsArguments;
-        return _materialRoute(
-            ArticleDetailsView(article: args.article,x:args.x ,));
+        final ArticleDetailsArguments args =
+            settings.arguments as ArticleDetailsArguments;
+        return _materialRoute(ArticleDetailsView(
+          article: args.article,
+          x: args.x,
+        ));
 
       case '/SavedArticles':
         return _materialRoute(const SavedArticles());
@@ -30,7 +33,7 @@ class AppRoutes {
 
 class ArticleDetailsArguments {
   final Articles? article;
-  final int?   x; // Another argument
+  final int? x; // Another argument
 
   ArticleDetailsArguments({required this.article, required this.x});
 }

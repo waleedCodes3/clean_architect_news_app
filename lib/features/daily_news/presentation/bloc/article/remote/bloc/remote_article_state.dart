@@ -16,9 +16,9 @@ final class RemoteArticleLoading extends RemoteArticleState {
 }
 
 final class RemoteArticleDone extends RemoteArticleState {
-  const RemoteArticleDone(List<Articles>? articles)
-      : super(articles: articles);
+  const RemoteArticleDone(List<Articles>? articles) : super(articles: articles);
 }
+
 final class RemoteArticleError extends RemoteArticleState {
   const RemoteArticleError(DioException? error) : super(error: error);
 }
