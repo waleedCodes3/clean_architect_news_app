@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         // ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter News App',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
