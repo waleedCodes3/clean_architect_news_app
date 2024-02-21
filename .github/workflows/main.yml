@@ -2,10 +2,6 @@ on:
     push:
       tags:
         - 'v*'
-      branches:
-        - main
-        - master
-        - develop
 name: "Build & Release"
 jobs:
     build:
